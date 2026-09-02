@@ -12,6 +12,16 @@ This repository is being developed from the original analysis scripts used durin
 > **Status:** Work in progress.
 > The original analysis code is currently being reorganized and validated before the workflow is considered fully reproducible.
 
+## Associated publication
+
+This repository reconstructs and refactors analyses underlying:
+
+**Delgadillo-Nuño E. et al. (2026).**  
+*Dealing with phosphorus deficiency: contrasting strategies in marine phytoplankton and bacteria.*  
+ISME Communications 6(1), ycag035.
+
+[Read the publication](https://doi.org/10.1093/ismeco/ycag035)
+
 ## Overview
 
 The workflow analyzes prokaryotic and eukaryotic metatranscriptomic datasets and integrates functional annotation, gene-expression analysis, community-level statistics, and scientific visualization.
