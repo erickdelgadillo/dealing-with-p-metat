@@ -3,18 +3,10 @@
 .RData
 .Ruserdata
 .Rproj.user/
+.Renviron
 
 # OS
 .DS_Store
 
-# Large raw datasets: kept locally, not versioned
-data/raw/prokaryotes/*
-data/raw/eukaryotes/*
-!data/raw/prokaryotes/.gitkeep
-!data/raw/eukaryotes/.gitkeep
-
-# Generated data
-data/intermediate/*
-data/processed/*
-!data/intermediate/.gitkeep
-!data/processed/.gitkeep
+# Research inputs and generated datasets live outside this repository
+/data/

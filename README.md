@@ -166,22 +166,19 @@ marine-p-deficiency-metat/
 │   ├── 02_eukaryotes.Rmd
 │   ├── 03_integrated_analysis_and_figures.Rmd
 │   └── 03_integrated_analysis_and_figures_clean.Rmd
-├── R/                    # Reusable R functions
-├── data/
-│   ├── raw/              # Raw/analysis input placeholders
-│   ├── metadata/         # Environmental and sample metadata
-│   ├── intermediate/     # Intermediate analysis objects
-│   └── processed/        # Analysis-ready outputs
+├── R/                    # Reusable R functions and local-data resolver
 ├── figures/              # Figure-related material
 ├── legacy/               # Original historical analysis scripts
 ├── reports/              # Analysis reports and documentation
 ├── results/              # Generated figures and statistical results
 ├── scripts/              # Additional analysis scripts
+├── .Renviron.example     # Template for the external data location
 ├── marine-p-deficiency-metat.rproj
 └── README.md
 ```
 
-Environmental metadata currently retained in the repository include mesocosm nutrient and production tables together with sample metadata for the prokaryotic and eukaryotic datasets.
+Research inputs and generated datasets are kept outside the Git repository and
+resolved through `R/paths.R`.
 
 ## Data availability
 
@@ -195,7 +192,24 @@ ENA study page:
 
 <https://www.ebi.ac.uk/ena/browser/view/PRJEB94162>
 
-The public repository currently contains selected experimental metadata but does not include the full raw sequencing dataset or all intermediate metatranscriptomic tables used by the R analysis.
+Input datasets, metadata, intermediate files, and processed tables used by the R
+analysis are not stored in Git. They live under an external data root configured
+for each workstation.
+
+Copy `.Renviron.example` to `.Renviron` and set `MARINE_P_DATA_DIR` to the
+absolute path of the external `data/` directory:
+
+```bash
+cp .Renviron.example .Renviron
+```
+
+```text
+MARINE_P_DATA_DIR=/absolute/path/to/marine-p-deficiency-metat/data
+```
+
+The project-local `.Renviron` file is ignored by Git. If the variable is not
+set, the analysis falls back to a local `data/` directory inside the repository;
+that directory is also ignored by Git.
 
 Large sequencing files should be retrieved directly from ENA rather than committed to Git.
 

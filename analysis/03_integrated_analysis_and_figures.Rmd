@@ -22,6 +22,8 @@ library(magick)
 
 library(vegan)
 library(plotrix)
+
+source(if (file.exists("../R/paths.R")) "../R/paths.R" else "R/paths.R")
 ```
 
 ```{r}
@@ -85,14 +87,14 @@ my.colors_All <- c(
 ```{r}
 # Load BP and PP environmental measurements
 PB_PP <- read.csv(
-  "../data/metadata/environmental/WP2_Spring_BP_PP_Mesocosmos.csv",
+  data_file("metadata/environmental/WP2_Spring_BP_PP_Mesocosmos.csv"),
   sep = ",", check.names = F) %>%
   separate(sample, c("treatment", "time"), sep = "_")
 
 
 # Load nutrient measurements and calculate treatment-time means
 Nutrients <- read.csv(
-  "../data/metadata/environmental/WP2_Spring_Mesocosmos.csv",
+  data_file("metadata/environmental/WP2_Spring_Mesocosmos.csv"),
   sep = ";", check.names = FALSE) %>%
   separate(sample, c("treatment", "time"), sep = "_") %>%
   filter(!variable %in% c("NIT", "TDN", "NO2")) %>%
@@ -260,7 +262,7 @@ combined_plot
 
 ```{r, include=FALSE}
 # Load the map image and convert it to a grob
-mapa_img <- image_read("../data/metadata/map/Mapa_RiaVigo.jpg")
+mapa_img <- image_read(data_file("metadata/map/Mapa_RiaVigo.jpg"))
 mapa_grob <- rasterGrob(mapa_img, interpolate = TRUE)
 
 # Convert the combined environmental plot into a grob
@@ -297,7 +299,7 @@ ggsave(
 ```{r}
 # Load the protein profile annotation table
 Hiper_proteins <- read_excel(
-  "../data/metadata/environmental/Protein_profiles_2025.xlsx",
+  data_file("metadata/environmental/Protein_profiles_2025.xlsx"),
   sheet = "Protein profiles",
   col_names = TRUE
 ) %>%
@@ -314,7 +316,7 @@ Hiper_proteins <- read_excel(
 
 # Load environmental flags and use sample IDs as row names
 env_flags_myrda <- read.csv(
-  "../data/metadata/environmental/int_flags.csv"
+  data_file("metadata/environmental/int_flags.csv")
 ) %>%
   tibble::column_to_rownames("Sample")
 ```
@@ -322,7 +324,7 @@ env_flags_myrda <- read.csv(
 ```{r setup, include=FALSE}
 # Load mean prokaryotic TPMs and standardize broad taxonomic assignments
 Prok_INTERES_WP2_TPMs <- read_parquet(
-  "../data/processed/prokaryotes/prok_mean_tpms.parquet"
+  data_file("processed/prokaryotes/prok_mean_tpms.parquet")
 ) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Bacteria", "Other prokaryotes", Final_Taxonomy)) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Proteobacteria", "Other prokaryotes", Final_Taxonomy)) %>%
@@ -372,7 +374,7 @@ Prok_INTERES_WP2_TPMs_2 <- Prok_INTERES_WP2_TPMs %>%
 ```{r}
 # Load eukaryotic TPMs and standardize broad taxonomic assignments
 Euk_INTERES_WP2_TPMs <- read_parquet(
-  "../data/processed/eukaryotes/euk_tpms_annotated.parquet"
+  data_file("processed/eukaryotes/euk_tpms_annotated.parquet")
 ) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Eukaryota", "Other eukaryotes", Final_Taxonomy)) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Alveolata", "Other eukaryotes", Final_Taxonomy)) %>%
@@ -528,8 +530,8 @@ MetaTs_plot
 library(dplyr)
 library(tidyr)
 
-Prok_INTERES_WP2_TPMs <- read_parquet("../data/processed/prokaryotes/prok_tpms_annotated.parquet")
-Euk_INTERES_WP2_TPMs <- read_parquet("../data/processed/eukaryotes/euk_tpms_annotated.parquet")
+Prok_INTERES_WP2_TPMs <- read_parquet(data_file("processed/prokaryotes/prok_tpms_annotated.parquet"))
+Euk_INTERES_WP2_TPMs <- read_parquet(data_file("processed/eukaryotes/euk_tpms_annotated.parquet"))
 ```
 
 
@@ -657,7 +659,7 @@ dplyr::mutate(GPvale = p * sqrt((6) / 100))
 
 
 ```{r, ,fig.height=60, fig.width=35}
-Prok_INTERES_WP2_TPMs_1 <- read_parquet("../data/processed/prokaryotes/prok_tpms_annotated.parquet") %>%
+Prok_INTERES_WP2_TPMs_1 <- read_parquet(data_file("processed/prokaryotes/prok_tpms_annotated.parquet")) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Bacteria", "Other prokaryotes", Final_Taxonomy))%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Proteobacteria", "Other prokaryotes", Final_Taxonomy))%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Pelagibacterales", "Alphaproteobacteria", Final_Taxonomy))%>%
@@ -685,7 +687,7 @@ Prok_INTERES_WP2_TPMs_1$Final_Taxonomy  <- factor(  Prok_INTERES_WP2_TPMs_1$Fina
 
 
 ```{r}
-Euk_INTERES_WP2_TPMs_1 <- read_parquet("../data/processed/eukaryotes/euk_tpms_annotated.parquet") %>%
+Euk_INTERES_WP2_TPMs_1 <- read_parquet(data_file("processed/eukaryotes/euk_tpms_annotated.parquet")) %>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Eukaryota", "Other eukaryotes", Final_Taxonomy))%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Alveolata", "Other eukaryotes", Final_Taxonomy))%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Opisthokonta", "Other eukaryotes", Final_Taxonomy))%>%
@@ -1303,7 +1305,7 @@ ggsave(
 
 
 ```{r}
-INTERES_Prok_DGE <- read_parquet("../data/processed/prokaryotes/prok_differential_expression.parquet") %>%
+INTERES_Prok_DGE <- read_parquet(data_file("processed/prokaryotes/prok_differential_expression.parquet")) %>%
     unite(orf, Final_Taxonomy, orf,  sep = "_", remove = F)%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Bacteria", "Other prokaryotes", Final_Taxonomy))%>%
   mutate(Final_Taxonomy = ifelse(Final_Taxonomy == "Proteobacteria", "Other prokaryotes", Final_Taxonomy))%>%
@@ -1389,14 +1391,14 @@ Prok_DGE_INTERES_Selected_Genes$Subcategory  <- factor(  Prok_DGE_INTERES_Select
 
 ```{r}
 INTERES_Prok_DGE <- read_parquet(
-  "../data/processed/prokaryotes/prok_differential_expression.parquet"
+  data_file("processed/prokaryotes/prok_differential_expression.parquet")
 ) %>%
   mutate(
     comparation = paste0(comparison, "-", time)
   )
 
 INTERES_polyA_DGE <- read_parquet(
-  "../data/processed/eukaryotes/euk_differential_expression.parquet"
+  data_file("processed/eukaryotes/euk_differential_expression.parquet")
 ) %>%
   mutate(
     comparation = paste0(comparison, "-", time)
@@ -1535,7 +1537,7 @@ combined_plot
 # DEBERIAMOS USAR EL OTRO ARCHIVO
 
 INTERES_polyA_DGE <- read_parquet(
-  "../data/processed/eukaryotes/euk_differential_expression.parquet"
+  data_file("processed/eukaryotes/euk_differential_expression.parquet")
 ) %>%
   mutate(
     comparation = paste0(comparison, "-", time)
@@ -2152,7 +2154,7 @@ ggsave(
 
 
 ```{r, cache=TRUE}
-Prok_INTERES_WP2_counts_replics <- read_parquet("../data/processed/prokaryotes/prok_counts_annotated.parquet")
+Prok_INTERES_WP2_counts_replics <- read_parquet(data_file("processed/prokaryotes/prok_counts_annotated.parquet"))
 
 
 # Sum counts by ORF
@@ -2184,7 +2186,7 @@ ENV_nMDS$treatment_time=factor(rep(c(
 ```
 
 
-```{r nMDS}
+```{r prok-nmds-permanova}
 ENV_nMDS.matrix <- as.matrix(ENV_nMDS[,6:307609])
 
 ENV_nMDS.dist <- vegdist(ENV_nMDS.matrix, method='bray')
@@ -2196,7 +2198,7 @@ ENV_nMDS.div
 ```
 
 
-```{r nMDS}
+```{r prok-nmds-fit}
 NMDS=metaMDS(ENV_nMDS.dist, k=2)
 
 ENV_nMDS.perm=as.data.frame(scores(NMDS))
@@ -2205,7 +2207,7 @@ ENV_nMDS.perm$Div=ENV_nMDS$time
 ```
 
 
-```{r nMDS}
+```{r prok-nmds-ellipses}
 
 MDS=data.frame(MDS1=NMDS$points[,1], MDS2=NMDS$points[,2], group=ENV_nMDS$treatment_time) # Grouping variable
 
@@ -2296,7 +2298,7 @@ Prok_nMDS_OG
 
 
 ```{r, cache=TRUE}
-Euk_INTERES_WP2_counts_replics <- read_parquet("../data/processed/eukaryotes/euk_counts_annotated.parquet")
+Euk_INTERES_WP2_counts_replics <- read_parquet(data_file("processed/eukaryotes/euk_counts_annotated.parquet"))
 
 
 # Sum counts by gene ID
@@ -2328,7 +2330,7 @@ Euk_nMDS$treatment_time=factor(rep(c(
 ```
 
 
-```{r nMDS}
+```{r euk-nmds-permanova}
 Euk_nMDS.matrix <- as.matrix(Euk_nMDS[,6:1104603]) # CAMBIA ESTE NUMERO
 
 Euk_nMDS.dist <- vegdist(Euk_nMDS.matrix, method='bray')
@@ -2340,7 +2342,7 @@ Euk_nMDS.div
 ```
 
 
-```{r nMDS}
+```{r euk-nmds-fit}
 NMDS=metaMDS(Euk_nMDS.dist, k=2)
 
 Euk_nMDS.perm=as.data.frame(scores(NMDS))
@@ -2484,7 +2486,7 @@ ggsave(
 
 
 ```{r}
-Prok_correl <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "Prok_1KEGG",  col_names = TRUE) %>%
+Prok_correl <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "Prok_1KEGG",  col_names = TRUE) %>%
   dplyr::select(sample, gene_protein,	Final_Taxonomy, tpm, PO4,	NP,	PP,	DIN,	chla) %>%
   dplyr::filter(Final_Taxonomy %in% c("Pseudomonadales", "Rhodobacterales", "Gammaproteobacteria", "Rhodobacterales", "SAR86"))%>%
   dplyr::filter(gene_protein %in% c("phoA", "phoD", "pit", "pstABCS", "phnC",	"phnA",	"phnD",	"phnE"))%>%
@@ -2499,7 +2501,7 @@ library(readxl)
 
 # Load data from Excel
 
-High_affinity <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "High_affinity", col_names = TRUE)
+High_affinity <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "High_affinity", col_names = TRUE)
 
 # Function to fit nls(), obtain the p-value from a log-log model, and apply Good's correction
 
@@ -2581,7 +2583,7 @@ library(readxl)
 
 # Load data
 
-Low_affinity <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "Low_affinity")
+Low_affinity <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "Low_affinity")
 
 # Filter diatoms and exclude zero values
 
@@ -2624,7 +2626,7 @@ library(readxl)
 
 # Load data from Excel
 
-P_mobilization <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "P_mobilization", col_names = TRUE)
+P_mobilization <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "P_mobilization", col_names = TRUE)
 
 # Function to fit an exponential model and calculate R² and the p-value
 
@@ -2717,7 +2719,7 @@ library(readxl)
 
 # Load data from Excel
 
-phoA_data <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "Organic_P", col_names = TRUE)
+phoA_data <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "Organic_P", col_names = TRUE)
 
 # filter data valid
 
@@ -2800,7 +2802,7 @@ library(readxl)
 
 # Load data from Excel
 
-data <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "Organic_p_and_Phosphonate", col_names = TRUE)
+data <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "Organic_p_and_Phosphonate", col_names = TRUE)
 
 # Rename columns to valid R names
 
@@ -2922,7 +2924,7 @@ library(readxl)
 
 # Load data from Excel
 
-datazz <- read_excel("../data/intermediate/Correlations.xlsx", sheet = "Phosphonate", col_names = TRUE)
+datazz <- read_excel(data_file("intermediate/Correlations.xlsx"), sheet = "Phosphonate", col_names = TRUE)
 
 # Filter valid values
 
@@ -2978,7 +2980,7 @@ Phosphonate_plot
 ```
 
 
-```{r, fig.height=15, fig.width=15'}
+```{r, fig.height=15, fig.width=15}
 # Load patchwork
 
 library(patchwork)
