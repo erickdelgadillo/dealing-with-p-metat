@@ -36,6 +36,8 @@ associated publication.
 library(dplyr, warn.conflicts = FALSE)
 library(ggplot2)
 
+source(if (file.exists("../R/paths.R")) "../R/paths.R" else "R/paths.R")
+
 SIGNIFICANCE <- 0.05
 N_REPLICATES <- 3
 
@@ -55,7 +57,7 @@ N_REPLICATES <- 3
 # experiment.
 
 production_data <- read.csv(
-    "../data/metadata/environmental/WP2_Spring_BP_PP_Mesocosmos.csv",
+    data_file("metadata/environmental/WP2_Spring_BP_PP_Mesocosmos.csv"),
   sep = ",",
   check.names = FALSE
 ) %>%
@@ -67,7 +69,7 @@ production_data <- read.csv(
   dplyr::select(-errorstandar)
 
 nutrients <- read.csv(
-    "../data/metadata/environmental/WP2_Spring_Mesocosmos.csv",
+    data_file("metadata/environmental/WP2_Spring_Mesocosmos.csv"),
   sep = ";",
   check.names = FALSE
 ) %>%
@@ -113,7 +115,7 @@ Environmental_data <- dplyr::bind_rows(
 # allowing downstream grouping to fall back to broader taxonomic ranks.
 
 taxonomy <- readr::read_tsv(
-    "../data/raw/prokaryotes/taxonomy_classification_gtdb.tsv",
+    data_file("raw/prokaryotes/taxonomy_classification_gtdb.tsv"),
   show_col_types = FALSE
 ) %>%
   dplyr::select(
@@ -332,7 +334,7 @@ stopifnot(!anyDuplicated(Taxonomy$orf))
 # belonging to the experiment reproduced in this repository are retained.
 
 samples_tags <- read.csv(
-  "../data/metadata/prokaryotes/INTERES_Prok_samples_tags.csv",
+  data_file("metadata/prokaryotes/INTERES_Prok_samples_tags.csv"),
   sep = ",",
   check.names = FALSE
 ) %>%
@@ -379,7 +381,7 @@ stopifnot(
 
 Prok_annotations <- suppressWarnings(
   data.table::fread(
-      "../data/raw/prokaryotes/all_samples_emapper_annotations.tsv")
+      data_file("raw/prokaryotes/all_samples_emapper_annotations.tsv"))
 ) %>%
   dplyr::rename(
     orf = `#query`
@@ -419,7 +421,7 @@ stopifnot(!anyDuplicated(Prok_annotations$orf))
 # prokaryotic fraction.
 
 prok_counts_raw <- readr::read_tsv(
-    "../data/raw/prokaryotes/counts.tsv.gz",
+    data_file("raw/prokaryotes/counts.tsv.gz"),
   show_col_types = FALSE
 ) %>%
   dplyr::filter(
@@ -463,7 +465,7 @@ stopifnot(
 # only in the unused `name` field.
 
 Hiper_proteins_analysis <- readxl::read_excel(
-    "../data/metadata/environmental/Protein_profiles_2024.xlsx",
+    data_file("metadata/environmental/Protein_profiles_2024.xlsx"),
   sheet = "Protein profiles",
   col_names = TRUE
 ) %>%
@@ -564,12 +566,12 @@ Prok_TPMs_annotated <- Prok_annotated %>%
 
 arrow::write_parquet(
   Prok_counts_annotated,
-    "../data/processed/prokaryotes/prok_counts_annotated.parquet")
+    data_file("processed/prokaryotes/prok_counts_annotated.parquet"))
 
 
 arrow::write_parquet(
   Prok_TPMs_annotated,
-    "../data/processed/prokaryotes/prok_tpms_annotated.parquet") 
+    data_file("processed/prokaryotes/prok_tpms_annotated.parquet"))
 ```
 
 # Functional TPM analysis
@@ -632,7 +634,7 @@ Prok_functional_TPM <- Prok_functional_joined %>%
 
 arrow::write_parquet(
   Prok_functional_TPM,
-    "../data/processed/prokaryotes/prok_functional_tpms.parquet")
+    data_file("processed/prokaryotes/prok_functional_tpms.parquet"))
 ```
 
 # Mean TPM and taxonomic composition
@@ -672,7 +674,7 @@ Prok_mean_TPM <- Prok_TPMs_annotated %>%
 
 arrow::write_parquet(
   Prok_mean_TPM,
-    "../data/processed/prokaryotes/prok_mean_tpms.parquet")
+    data_file("processed/prokaryotes/prok_mean_tpms.parquet"))
 ```
 
 ```{r taxonomic-composition}
@@ -760,7 +762,7 @@ stopifnot(
 
 readr::write_csv(
   Prok_gene_ratios,
-    "../data/processed/prokaryotes/prok_gene_ratios.csv")
+    data_file("processed/prokaryotes/prok_gene_ratios.csv"))
 ```
 
 # Differential gene expression analysis
@@ -967,7 +969,7 @@ stopifnot(
 
 arrow::write_parquet(
   Prok_DGE_annotated,
-    "../data/processed/prokaryotes/prok_differential_expression.parquet")
+    data_file("processed/prokaryotes/prok_differential_expression.parquet"))
 
 ```
 
