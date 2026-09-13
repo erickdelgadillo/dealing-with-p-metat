@@ -1,43 +1,44 @@
-# Dealing with phosphorus deficiency (metatranscriptomics)
+# Dealing with phosphorus deficiency — Metatranscriptomics
 
-![R](https://img.shields.io/badge/R-paper%20figures-276DC3?logo=r&logoColor=white)
-![Scope](https://img.shields.io/badge/scope-analysis--ready%20data-2E8B57)
+![R](https://img.shields.io/badge/R-reproducible%20analysis-276DC3?logo=r&logoColor=white)
+![Data](https://img.shields.io/badge/data-paper--ready-2E8B57)
+![Status](https://img.shields.io/badge/status-reproducible-brightgreen)
 
-Lightweight, reproducible figure workflow for the study **“Dealing with
-phosphorus deficiency: contrasting strategies in marine phytoplankton and
-bacteria.”**
+Reproducible R workflow for the figures associated with the study:
 
-This repository deliberately starts from small, analysis-ready datasets. Raw
-count-table assembly, taxonomic and functional annotation, TPM calculation,
-filtering, and differential-expression modelling are no longer performed here.
-That upstream processing belongs in a separate workflow repository.
+**“Dealing with phosphorus deficiency: contrasting strategies in marine phytoplankton and bacteria.”**
+
+This repository contains the **paper-ready datasets and analysis code required to reproduce the final figures** of the study. It focuses on the downstream analysis and visualization workflow rather than the computationally intensive upstream processing of the metatranscriptomic data.
 
 ## Publication
 
-Delgadillo-Nuño E., Teira E., Fernández E., Justel-Díez M., Di Leo D., Lundin
-D., Pinhassi J. & Martínez-García S. (2026). *Dealing with phosphorus
-deficiency: contrasting strategies in marine phytoplankton and bacteria.*
+Delgadillo-Nuño E., Teira E., Fernández E., Justel-Díez M., Di Leo D., Lundin D., Pinhassi J. & Martínez-García S. (2026).  
+*Dealing with phosphorus deficiency: contrasting strategies in marine phytoplankton and bacteria.*  
 **ISME Communications**, 6(1), ycag035.
 
-DOI: <https://doi.org/10.1093/ismeco/ycag035>
+**DOI:** https://doi.org/10.1093/ismeco/ycag035
 
-Raw sequencing data: ENA study `PRJEB94162`, samples `ERS25306826`–`ERS25306860`,
-reads `ERR15316847`–`ERR15316881`.
+Raw sequencing data are available through the European Nucleotide Archive (ENA):
 
-## Reproduce the figures
+- Study: `PRJEB94162`
+- Samples: `ERS25306826–ERS25306860`
+- Reads: `ERR15316847–ERR15316881`
 
-From the repository root:
+## Overview
 
-```bash
-Rscript --vanilla analysis/paper_figures.R
-```
+The study investigates contrasting responses of marine phytoplankton and heterotrophic bacteria to phosphorus deficiency using metatranscriptomic data from nutrient-manipulation experiments.
 
-The script reads only `data/derived/` and writes Figures 1–6 plus Supplementary
-Figures 1–2 to `results/figures/`. It does not need `.Renviron`, external disks,
-raw counts, annotation tables, or a saved R workspace.
+The workflow integrates:
 
-Required R packages are `arrow`, `cowplot`, `dplyr`, `ggh4x`, `ggplot2`,
-`magick`, `patchwork`, `readr`, and `scales`.
+- environmental and biological measurements;
+- prokaryotic and eukaryotic taxonomic composition;
+- nMDS ordination and PERMANOVA results;
+- phosphorus-related functional responses;
+- differential gene expression results;
+- taxonomic contributions to phosphorus-related functions;
+- correlations between transcriptional responses and environmental variables.
+
+The repository intentionally starts from compact, **analysis-ready derived datasets**. Raw count processing, taxonomic and functional annotation, TPM calculation, filtering, and differential-expression modelling are considered upstream processing and are not repeated here.
 
 ## Repository structure
 
@@ -45,70 +46,121 @@ Required R packages are `arrow`, `cowplot`, `dplyr`, `ggh4x`, `ggplot2`,
 dealing-with-p-metat/
 ├── analysis/
 │   └── paper_figures.R
+│
 ├── data/
 │   ├── README.md
 │   └── derived/
-│       ├── figure_*.csv
-│       ├── figure_*.parquet
-│       ├── supplementary_*.csv
-│       ├── supplementary_*.parquet
+│       ├── figure_1_environmental.csv
+│       ├── figure_1_map.png
+│       ├── figure_2_nmds_scores.csv
+│       ├── figure_2_permanova.csv
+│       ├── figure_2_taxonomic_composition.csv
+│       ├── figure_3_taxonomic_contributions.csv
+│       ├── figure_3_totals.csv
+│       ├── figure_4_prokaryote_dge.parquet
+│       ├── figure_5_eukaryote_dge.parquet
+│       ├── figure_6_correlations.csv
+│       ├── supplementary_figure_1_proportions.csv
+│       ├── supplementary_figure_2_dge_overview.parquet
 │       └── SHA256SUMS
+│
 ├── results/
 │   └── figures/
+│
 └── README.md
 ```
 
-The individual tables, their source versions, and verification status are
-documented in `data/README.md`. `data/derived/SHA256SUMS` provides checksums for
-the committed data snapshot.
+`data/README.md` documents the provenance and role of each derived dataset.  
+`data/derived/SHA256SUMS` provides checksums for the committed data snapshot.
 
-## Provenance and scope change
+## Reproducing the figures
 
-The derived snapshot was assembled from the small plotting objects and final
-local publication materials available before this refactor. The pre-refactor
-state remains recoverable from commit `965c166` on `main`, and an independently
-verified local backup retains the former `.RData` and `.Rhistory` files.
+Clone the repository and run the analysis from the repository root:
 
-Removed from the active workflow:
+```bash
+git clone https://github.com/erickdelgadillo/dealing-with-p-metat.git
+cd dealing-with-p-metat
 
-- raw count, taxonomy, and annotation imports;
-- TPM calculation and large table joins;
-- prokaryotic and eukaryotic `edgeR` modelling;
-- exploratory R Markdown notebooks and saved-session dependencies;
-- non-paper diagnostic and bubble plots.
+Rscript --vanilla analysis/paper_figures.R
+```
 
-Retained in compact form:
+The workflow reads the datasets stored in `data/derived/` and generates the publication figures in:
 
-- environmental summaries and the site map;
-- paper-associated taxonomic composition and nMDS/PERMANOVA outputs;
-- phosphorus-gene totals, taxonomic contributions, and proportions;
-- complete DGE results needed for Supplementary Figure 2;
-- selected DGE rows and annotations needed for Figures 4 and 5;
-- final correlation inputs used by Figure 6.
+```text
+results/figures/
+```
 
-## Known provenance notes
+The script reproduces:
 
-- The prokaryotic composition in Figure 2 uses the paper-associated
-  `INTERES_Prok_WP2_TPMs_mean_Annotated_1KEGG_ko.parquet` source. It contains 45
-  more rows than the later project copy and produces the published composition.
-- No separate paper-final eukaryotic mean table was found locally. Its Figure 2
-  composition was reconstructed from the current annotated eukaryotic TPM table
-  and checked visually against the publication figure.
-- The historical December 2024 correlation workbook and the operational
-  workbook agree cell-for-cell on their shared sheets. The operational workbook
-  additionally contains the small tables used by all six Figure 6 panels.
-- Figures 4 and 5 reproduce the paper's displayed labels. The underlying DGE
-  contrasts are stored as `R vs C`, `R+P vs C`, and `R+P vs R`; the publication
-  labels the first two in the reverse textual order without reversing `logFC`.
-  Both fields remain in the Parquet files so this distinction is explicit.
-- An exploratory overwrite in the former integrated notebook caused its local
-  Figure 2A to show only Rhodobacterales. The new script uses the verified full
-  taxonomic-composition table and restores the all-taxa panel.
-- The preliminary project map was replaced with the publication panel from the
-  final Figure 1 source, removing its obsolete informal working title.
+- Figures 1–6
+- Supplementary Figures 1–2
+
+No external data paths, saved R workspaces, or raw sequencing files are required.
+
+## R dependencies
+
+The workflow uses the following R packages:
+
+```text
+arrow
+cowplot
+dplyr
+ggh4x
+ggplot2
+magick
+patchwork
+readr
+scales
+```
+
+## Data strategy
+
+Large raw and intermediate metatranscriptomic datasets are deliberately excluded from the repository.
+
+Instead, the repository stores only the compact derived datasets required for the published analyses and figures:
+
+```text
+Raw sequencing data
+        ↓
+Upstream processing
+        ↓
+Paper-ready derived datasets
+        ↓
+analysis/paper_figures.R
+        ↓
+Publication figures
+```
+
+This design keeps the repository lightweight while preserving the reproducibility of the downstream analyses presented in the publication.
+
+Raw sequencing reads remain publicly available through ENA under accession `PRJEB94162`.
 
 ## Data integrity
 
-Files under `data/derived/` are publication-sized outputs, not raw sequencing
-data. New raw or intermediate data should be placed under `data/raw/`,
-`data/intermediate/`, or `data/processed/`; those locations are ignored by Git.
+Checksums for all committed derived datasets are provided in:
+
+```text
+data/derived/SHA256SUMS
+```
+
+They can be verified with:
+
+```bash
+sha256sum -c data/derived/SHA256SUMS
+```
+
+## Outputs
+
+The workflow generates the final figures under:
+
+```text
+results/figures/
+```
+
+These outputs cover environmental conditions, microbial taxonomic composition, multivariate community patterns, phosphorus-related transcriptional responses, differential gene expression, and environmental correlations.
+
+## Citation
+
+If you use this workflow or the associated data, please cite:
+
+> Delgadillo-Nuño E., Teira E., Fernández E., Justel-Díez M., Di Leo D., Lundin D., Pinhassi J. & Martínez-García S. (2026). Dealing with phosphorus deficiency: contrasting strategies in marine phytoplankton and bacteria. *ISME Communications*, 6(1), ycag035. https://doi.org/10.1093/ismeco/ycag035
