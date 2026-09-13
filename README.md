@@ -1,4 +1,4 @@
-# Dealing with phosphorus deficiency
+# Dealing with phosphorus deficiency (metatranscriptomics)
 
 ![R](https://img.shields.io/badge/R-paper%20figures-276DC3?logo=r&logoColor=white)
 ![Scope](https://img.shields.io/badge/scope-analysis--ready%20data-2E8B57)
