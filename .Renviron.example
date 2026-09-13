@@ -1,2 +1,0 @@
-# Copy this file to .Renviron and set the absolute path to the local dataset.
-MARINE_P_DATA_DIR=/path/to/marine-p-deficiency-metat/data
