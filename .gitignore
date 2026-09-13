@@ -8,5 +8,7 @@
 # OS
 .DS_Store
 
-# Research inputs and generated datasets live outside this repository
-/data/
+# Large or regenerable research inputs
+/data/raw/
+/data/intermediate/
+/data/processed/

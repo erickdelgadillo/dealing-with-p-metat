@@ -1,0 +1,73 @@
+Workpackage,treatment,time,Subcategory,Domain,mean,errorstandar,label
+WP2,C,0h,High affinity transporters,Eukaryotes,35.90880401978781,4.031874389679403,a
+WP2,C,0h,High affinity transporters,Prokaryotes,4210.356576627357,277.9423672698096,a
+WP2,C,0h,Low affinity transporters,Eukaryotes,4744.104190571029,277.4314130390591,a
+WP2,C,0h,Low affinity transporters,Prokaryotes,1223.6187045685306,39.137619854604175,a
+WP2,C,0h,Organic P hydrolysis,Eukaryotes,680.2912305691865,77.19092562219184,a
+WP2,C,0h,Organic P hydrolysis,Prokaryotes,235.24887816050688,15.914657553720591,a
+WP2,C,0h,P starvation response,Eukaryotes,92.11206338567006,14.560923499808784,a
+WP2,C,0h,P starvation response,Prokaryotes,1188.8652941685295,116.082493300966,a
+WP2,C,0h,Phosphonate metabolism,Eukaryotes,102.16653051149837,5.179336228004737,a
+WP2,C,0h,Phosphonate metabolism,Prokaryotes,81.40990394061383,12.503554200449557,a
+WP2,C,0h,Pi mobilization,Eukaryotes,2593.7975328950124,406.93823040276493,a
+WP2,C,0h,Pi mobilization,Prokaryotes,346.3287211309975,49.17317947617918,a
+WP2,C,72h,High affinity transporters,Eukaryotes,39.572776473621026,4.470079591809041,a
+WP2,C,72h,High affinity transporters,Prokaryotes,1506.219790715712,249.23041754434757,a
+WP2,C,72h,Low affinity transporters,Eukaryotes,1248.1241177170814,52.80010207325432,a
+WP2,C,72h,Low affinity transporters,Prokaryotes,337.6970899459874,21.662340983698062,a
+WP2,C,72h,Organic P hydrolysis,Eukaryotes,744.9960191965498,38.51734354959122,a
+WP2,C,72h,Organic P hydrolysis,Prokaryotes,179.05684020550171,18.66125862545986,a
+WP2,C,72h,P starvation response,Eukaryotes,15.75472767924036,2.180676296873226,a
+WP2,C,72h,P starvation response,Prokaryotes,662.6771947208016,118.80804689070352,a
+WP2,C,72h,Phosphonate metabolism,Eukaryotes,149.79527015046517,11.61734055172207,a
+WP2,C,72h,Phosphonate metabolism,Prokaryotes,46.81914829502042,9.044128455051707,a
+WP2,C,72h,Pi mobilization,Eukaryotes,1874.3677228128997,51.855511620182135,a
+WP2,C,72h,Pi mobilization,Prokaryotes,232.63616970869825,19.41920247984621,a
+WP2,R,0h,High affinity transporters,Eukaryotes,48.562327438141864,6.544662875275677,b
+WP2,R,0h,High affinity transporters,Prokaryotes,5562.898493013095,678.5419689852735,b
+WP2,R,0h,Low affinity transporters,Eukaryotes,6966.196404936522,647.5869725251569,b
+WP2,R,0h,Low affinity transporters,Prokaryotes,2166.6124548004736,698.5074769377362,a
+WP2,R,0h,Organic P hydrolysis,Eukaryotes,993.0285653757329,121.32135362260298,b
+WP2,R,0h,Organic P hydrolysis,Prokaryotes,666.389505358064,211.28459308175755,b
+WP2,R,0h,P starvation response,Eukaryotes,14.10949752448027,1.1903185252605968,b
+WP2,R,0h,P starvation response,Prokaryotes,1635.9707322246736,84.38118381130998,b
+WP2,R,0h,Phosphonate metabolism,Eukaryotes,61.62741103210694,6.236231432970963,b
+WP2,R,0h,Phosphonate metabolism,Prokaryotes,124.52017982008527,9.114830601789727,b
+WP2,R,0h,Pi mobilization,Eukaryotes,2835.8709484412125,274.08218279216175,a
+WP2,R,0h,Pi mobilization,Prokaryotes,642.7687838699607,244.5479347128699,ab
+WP2,R,72h,High affinity transporters,Eukaryotes,28.41942350003535,2.2688334076895,b
+WP2,R,72h,High affinity transporters,Prokaryotes,2348.8824415101217,247.0356839306608,b
+WP2,R,72h,Low affinity transporters,Eukaryotes,3196.0808919732076,445.1998576973186,b
+WP2,R,72h,Low affinity transporters,Prokaryotes,2989.3879565944817,1037.1192359075396,b
+WP2,R,72h,Organic P hydrolysis,Eukaryotes,476.13967002297255,23.246892503763302,b
+WP2,R,72h,Organic P hydrolysis,Prokaryotes,638.3984203285746,177.44729990142866,b
+WP2,R,72h,P starvation response,Eukaryotes,123.15319431600125,39.54827601348434,b
+WP2,R,72h,P starvation response,Prokaryotes,718.9952806941777,34.67473012742094,a
+WP2,R,72h,Phosphonate metabolism,Eukaryotes,80.69962121986171,10.581362746788422,b
+WP2,R,72h,Phosphonate metabolism,Prokaryotes,179.71553800489613,3.654768845778875,b
+WP2,R,72h,Pi mobilization,Eukaryotes,1888.6913664676172,151.29791915483173,a
+WP2,R,72h,Pi mobilization,Prokaryotes,844.8179383690532,161.2588090185214,b
+WP2,R+P,0h,High affinity transporters,Eukaryotes,17.227596118472157,5.829608593910466,c
+WP2,R+P,0h,High affinity transporters,Prokaryotes,421.2603205438745,25.357729488444374,c
+WP2,R+P,0h,Low affinity transporters,Eukaryotes,198.00413523682732,70.28822374366172,c
+WP2,R+P,0h,Low affinity transporters,Prokaryotes,228.30184353317213,15.660901960623011,b
+WP2,R+P,0h,Organic P hydrolysis,Eukaryotes,274.65840224187065,95.21316275261738,c
+WP2,R+P,0h,Organic P hydrolysis,Prokaryotes,183.80139417728068,26.878704778640955,c
+WP2,R+P,0h,P starvation response,Eukaryotes,24.422987177905377,1.821849522364248,c
+WP2,R+P,0h,P starvation response,Prokaryotes,357.4819156896259,6.2777945381694025,c
+WP2,R+P,0h,Phosphonate metabolism,Eukaryotes,73.63553021716062,15.086893445694173,ab
+WP2,R+P,0h,Phosphonate metabolism,Prokaryotes,98.2940275601363,6.692804993441783,a
+WP2,R+P,0h,Pi mobilization,Eukaryotes,2852.762864435482,603.2677368316017,a
+WP2,R+P,0h,Pi mobilization,Prokaryotes,760.5601520402425,164.05349031053393,b
+WP2,R+P,72h,High affinity transporters,Eukaryotes,21.94807824203284,1.555699099491825,b
+WP2,R+P,72h,High affinity transporters,Prokaryotes,384.2623437423137,24.777385747758565,c
+WP2,R+P,72h,Low affinity transporters,Eukaryotes,300.52407447282604,12.840381607150174,c
+WP2,R+P,72h,Low affinity transporters,Prokaryotes,247.41268066127063,13.93377617563361,c
+WP2,R+P,72h,Organic P hydrolysis,Eukaryotes,358.52104822349804,3.6135012854030144,c
+WP2,R+P,72h,Organic P hydrolysis,Prokaryotes,74.48479524775448,3.494322694226032,c
+WP2,R+P,72h,P starvation response,Eukaryotes,98.81189025363157,4.43269561692485,b
+WP2,R+P,72h,P starvation response,Prokaryotes,252.64810382273635,19.374535918623785,b
+WP2,R+P,72h,Phosphonate metabolism,Eukaryotes,79.7594984721132,5.251393351681603,b
+WP2,R+P,72h,Phosphonate metabolism,Prokaryotes,28.964120394422146,0.8225718482989575,c
+WP2,R+P,72h,Pi mobilization,Eukaryotes,1590.5162248253337,45.0917038124075,b
+WP2,R+P,72h,Pi mobilization,Prokaryotes,234.1806989942565,8.271565353197916,a
