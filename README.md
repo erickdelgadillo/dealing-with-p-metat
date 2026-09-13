@@ -44,8 +44,8 @@ The repository intentionally starts from compact, **analysis-ready derived datas
 
 ![Experimental design](results/figures/experimental_design.png)
 
-Schematic overview of the microcosm experiment and metatranscriptomic sampling strategy used in the study.
-
+Schematic overview of mesocosm experimental setup in the Ría de Vigo.
+a) Floating structure anchored near the Toralla Marine Science Station (ECIMAT) holding three 500 L UV-stabilized polyethylene bags exposed to in situ temperature and light conditions. b) Schematic representation of the experimental design: surface seawater from the inner Ría de Vigo was used to fill the bags and establish three treatments, Control (C), River (R, 10% addition of river water) and River+P (R+P, 10% river water plus phosphate addition).
 
 
 
