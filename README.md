@@ -42,7 +42,7 @@ The repository intentionally starts from compact, **analysis-ready derived datas
 
 ## Experimental design
 
-![Experimental design](figures/experimental_design.png)
+![Experimental design](results/figures/experimental_design.png)
 
 Schematic overview of the microcosm experiment and metatranscriptomic sampling strategy used in the study.
 
