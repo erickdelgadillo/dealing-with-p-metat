@@ -40,6 +40,15 @@ The workflow integrates:
 
 The repository intentionally starts from compact, **analysis-ready derived datasets**. Raw count processing, taxonomic and functional annotation, TPM calculation, filtering, and differential-expression modelling are considered upstream processing and are not repeated here.
 
+## Experimental design
+
+![Experimental design](figures/experimental_design.png)
+
+Schematic overview of the microcosm experiment and metatranscriptomic sampling strategy used in the study.
+
+
+
+
 ## Repository structure
 
 ```text
