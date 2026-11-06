@@ -128,7 +128,7 @@ run_phosphorus_indicators <- function(project_dir = ".") {
         caption = "Ratios of state mean TPM; zero/absent pit gives NA. Subunits summed explicitly; no pseudocount. No causal inference.")
     save_scientific(p, file.path(figs, "pst_pit_vs_phosphate"), 13, max(6, 2.5 * ceiling(nrow(keep) / 3)))
   }
-  writeLines(capture.output(sessionInfo()), file.path(out, "sessionInfo.txt"))
+  writeLines(sub("[[:blank:]]+$", "", capture.output(sessionInfo())), file.path(out, "sessionInfo.txt"))
   message("Generated compact tables and PNG/PDF/SVG figures under ", out)
   invisible(analyses)
 }
